@@ -1,174 +1,294 @@
-# MedVibe | Premium Medicine Delivery Web App
+# Medicine Delivery App
 
-A production-ready, highly polished Medicine Delivery Web App built using a modern decoupled architecture. The backend is powered by **Python FastAPI** and **SQLAlchemy** (supporting native SQLite shared-memory in local development and production-grade **PostgreSQL**). The frontend is a beautiful, fluid React single-page application built on **Vite**, featuring a premium custom-curated **Vanilla CSS Dark-Theme Glassmorphism UI**.
+A full-stack medicine delivery platform built as part of the SDE Intern Coding Assignment.
 
----
-
-## 🌟 Key Features
-1. **Premium Responsive UI**: Curated medical-emerald and deep carbon colors with frosted glass backdrops, micro-interactions, responsive catalog grids, and glowing feedback.
-2. **Robust Authentication**: Secure registration and login utilizing custom cryptographically secure PBKDF2-HMAC password hashing with JWT token protection.
-3. **Flexible SQL Engine**: Native PostgreSQL DDL support with an intelligent local SQLite automatic fallback for zero-friction evaluation.
-4. **Dynamic Cart Fee Matrix**: Evaluates all rules simultaneously:
-   - **Small Cart Fee**: +₹29 if discounted item total < ₹199.
-   - **Delivery Fee**: +₹40 if store distance > 2000m (serviceable limit <= 5000m).
-   - **Late Night Surcharge**: +₹25 based on server timezone evaluated in Indian Standard Time (IST) (10 PM to 6 AM).
-5. **Voucher Validation**: Supports seed flat-discount (`FLAT50`) and percentage-discount (`PCT20`) coupons with minimum order values, active flags, and expiry checks.
-6. **Thread-Safe Concurrency**: Employs row-level transaction blocking (`with_for_update`) during order checkout to prevent stock double-spending or overselling.
+The application allows users to browse medicines, manage their cart, verify delivery serviceability, place orders, and track order history. The project is built using React, FastAPI, PostgreSQL, and Docker Compose, with additional features such as JWT authentication, coupon support, AI-powered prescription scanning, and transaction-safe order processing.
 
 ---
 
-## 📁 Repository Structure
+## Live Demo
+
+**Demo Video:** [https://youtu.be/NuHZa3jy2os]
+
+The demo covers:
+
+* User authentication
+* Medicine catalogue and search
+* Cart management
+* Serviceability validation
+* Coupon application
+* Dynamic fee calculation
+* Order placement
+* Order history
+* AI prescription scanning
+* API documentation
+
+---
+
+## Screenshots
+
+### Medicine Catalogue
+
+![Medicine Catalogue](<img width="1916" height="901" alt="image" src="https://github.com/user-attachments/assets/daf9dffc-2210-4d40-8060-8347b725e3d9" />
+)
+
+### Cart 
+![Cart and Checkout](<img width="1915" height="902" alt="image" src="https://github.com/user-attachments/assets/1262ed31-ba34-4862-94e4-7521319a1036" />
+)
+(<img width="1912" height="892" alt="image" src="https://github.com/user-attachments/assets/18952a46-75fb-476e-906d-7a7528261e0b" />
+)
+
+### Checkout
+(<img width="1913" height="896" alt="image" src="https://github.com/user-attachments/assets/ddb2bef2-403e-4837-af6e-990726d4d90d" />
+)
+
+### Order History
+
+![Order History](<img width="1913" height="899" alt="image" src="https://github.com/user-attachments/assets/8bece731-d2db-4964-bfba-ba6b44ef3668" />
+)
+
+### Prescription Scanner
+
+![Prescription Scanner](<img width="1905" height="897" alt="image" src="https://github.com/user-attachments/assets/4c121e85-53e5-4f73-b7c9-6a87da8b5c96" />
+)
+
+---
+
+## Features
+
+### Medicine Catalogue
+
+* Browse medicines with name, salt composition, pricing, stock availability, and prescription requirements
+* Search medicines by name or salt composition
+* Prevent adding out-of-stock medicines to cart
+
+### Cart Management
+
+* Add medicines to cart
+* Update quantities
+* Remove medicines from cart
+* Real-time stock validation
+* Automatic cart total calculation
+
+### Serviceability Check
+
+* Delivery validation based on distance
+* Serviceable for distances up to 5000 meters
+* Estimated delivery time calculation
+
+### Dynamic Fee Engine
+
+* Small Cart Fee for orders below ₹199
+* Delivery Fee for distances above 2 km
+* Late Night Fee between 10 PM and 6 AM
+
+### Order Management
+
+* Secure order placement
+* Automatic stock deduction
+* Cart reset after successful checkout
+* Order history and order details
+
+### Authentication
+
+* User registration
+* User login
+* JWT-based authentication and authorization
+
+### Coupon Support
+
+* Apply discount coupons during checkout
+* Dynamic payable amount calculation
+
+### AI Prescription Scanning
+
+* Upload prescription images
+* Google Gemini-powered OCR processing
+* Extract medicine information from prescriptions
+
+---
+
+## Key Engineering Decisions
+
+### Transaction-Safe Checkout
+
+Order placement uses PostgreSQL row-level locking (`SELECT FOR UPDATE`) to prevent race conditions and ensure stock consistency during concurrent purchases.
+
+### Backend Architecture
+
+The backend follows a layered architecture:
+
+API Layer → Service Layer → Database Layer
+
+This separation improves maintainability, scalability, and testability.
+
+### Server-Side Validation
+
+Critical validations such as stock availability, serviceability checks, coupon validation, and order processing are performed on the server.
+
+### Containerized Development
+
+Docker Compose provides a reproducible development environment with minimal setup.
+
+---
+
+## Tech Stack
+
+### Frontend
+
+* React.js (Vite)
+* React Router DOM
+* CSS
+* Lucide React Icons
+
+### Backend
+
+* FastAPI
+* SQLAlchemy
+* PostgreSQL
+* Pydantic
+* JWT Authentication
+
+### Testing
+
+* Pytest
+
+### DevOps
+
+* Docker
+* Docker Compose
+
+### AI Integration
+
+* Google Gemini API
+
+---
+
+## API Overview
+
+| Method | Endpoint              |
+| ------ | --------------------- |
+| GET    | /medicines            |
+| GET    | /medicines/search     |
+| GET    | /medicines/{id}       |
+| POST   | /cart/items           |
+| GET    | /cart                 |
+| PATCH  | /cart/items/{id}      |
+| DELETE | /cart/items/{id}      |
+| POST   | /serviceability/check |
+| POST   | /orders               |
+| GET    | /orders               |
+| GET    | /orders/{id}          |
+
+Interactive API documentation is available through Swagger UI at:
+
+http://localhost:8000/docs
+
+---
+
+## Getting Started
+
+### Prerequisites
+
+* Docker Desktop
+
+### Clone Repository
+
+```bash
+git clone <repository-url>
+cd medicine-delivery-app
 ```
-medicine-delivery-app/
-├── backend/
-│   ├── app/
-│   │   ├── config.py           # Pydantic settings schema
-│   │   ├── database.py         # DB connection & SQLite fallback logic
-│   │   ├── models.py           # SQLAlchemy declarative entities
-│   │   ├── schemas.py          # Pydantic validation schemas
-│   │   ├── auth.py             # Secure PBKDF2 & JWT utilities
-│   │   ├── seed.py             # Seed data logic
-│   │   ├── main.py             # FastAPI entry coordinate
-│   │   └── routers/            # Auth, Medicines, Cart, Orders, Coupons, Serviceability
-│   ├── tests/                  # Pytest verification suites
-│   ├── pytest.ini
-│   └── requirements.txt        # Backend dependencies
-├── frontend/
-│   ├── src/
-│   │   ├── components/         # ProtectedRoute layouts & Navbar
-│   │   ├── pages/              # Cart, Checkout, LoginRegister, MedicineListing, OrderHistory, OrderSuccess
-│   │   ├── context/            # Centralized AuthContext with fetch wrappers
-│   │   ├── App.jsx             # React Router routing setup
-│   │   ├── index.css           # Curated CSS custom design variables & glassmorphism
-│   │   └── main.jsx
-│   ├── tests/                  # Vitest UI rendering and button state tests
-│   ├── index.html
-│   ├── package.json
-│   ├── vite.config.js          # API proxy routing definition
-│   └── vitest.config.js        # Vitest parameters
-├── database.sql                # Production PostgreSQL schema
-├── docker-compose.yml          # Optional container orchestration
-└── README.md                   # This instruction manual
+
+### Run Application
+
+```bash
+docker compose up --build
+```
+
+### Application URLs
+
+Frontend:
+
+```text
+http://localhost:5173
+```
+
+Backend:
+
+```text
+http://localhost:8000
+```
+
+Swagger Documentation:
+
+```text
+http://localhost:8000/docs
 ```
 
 ---
 
-## 🛠️ Prerequisites
-- **Python 3.10+** (Python 3.13.5 fully supported)
-- **Node.js v18+** (Node v24.13.1 fully supported)
-- **npm** (npm 11.8.0 fully supported)
+## Demo Credentials
+
+User Account
+
+```text
+Email: demo@example.com
+Password: password123
+```
+
+(Replace with your actual seeded credentials.)
 
 ---
 
-## 🚀 Native Local Setup (No Docker Required)
+## Environment Variables
 
-### 1. Database Setup
-The application is pre-configured to automatically attempt connecting to a PostgreSQL server running locally. If a local PostgreSQL service is not detected, it will **automatically and seamlessly fall back to a local SQLite database file** (`medicine_delivery.db` generated inside the `backend/` directory) with all tables created and populated with seed data on first boot! No manual SQL commands or database setups are required.
+Example:
 
-### 2. Run Backend (FastAPI)
-1. Open a new terminal in the `backend/` directory:
-   ```bash
-   cd backend
-   ```
-2. Create and activate a Python virtual environment:
-   ```bash
-   python -m venv venv
-   # On Windows (PowerShell):
-   .\venv\Scripts\Activate.ps1
-   # On Linux/macOS:
-   source venv/bin/activate
-   ```
-3. Install dependencies:
-   ```bash
-   pip install -r requirements.txt
-   ```
-4. Start the development server using uvicorn:
-   ```bash
-   uvicorn app.main:app --reload --port 8000
-   ```
-   *The backend will boot up, create database tables automatically, and seed them. It will be accessible at `http://localhost:8000`.*
+```env
+JWT_SECRET=your_secret_key
 
-### 3. Run Frontend (Vite + React)
-1. Open a new terminal in the `frontend/` directory:
-   ```bash
-   cd frontend
-   ```
-2. Install npm packages:
-   ```bash
-   npm install
-   ```
-3. Boot up the Vite local server:
-   ```bash
-   npm run dev
-   ```
-   *The frontend is proxied to redirect API queries to the backend automatically. Open `http://localhost:5173` in your browser to experience the beautiful dark-themed MedVibe dashboard.*
+GEMINI_API_KEY=your_gemini_api_key
+```
 
 ---
 
-## 🧪 Running Test Suites
+## Running Tests
 
-### 1. Backend Tests (pytest)
-Our backend test suite performs 28 unit and integration validations isolating database operations using an in-memory SQLite shared database, including testing all cart fees, serviceability ranges, OOS add errors, stock locks, and active coupon structures.
-To execute backend tests:
 ```bash
 cd backend
-pytest
-```
 
-### 2. Frontend Tests (Vitest)
-Our frontend tests verify correct reactive total billing displays, out-of-stock cart button disabling states, and serviceability checks.
-To execute frontend tests:
-```bash
-cd frontend
-npm run test
+pytest -v
 ```
 
 ---
 
-## 🗃️ Seeding Overview
-On startup, the seeder validates if records exist and will automatically seed:
-- **5 Users**:
-  - `john.doe@example.com` (password: `password123`)
-  - `jane.smith@example.com` (password: `password123`)
-  - `sam.jones@example.com` (password: `password123`)
-  - `alice.williams@example.com` (password: `password123`)
-  - `bob.brown@example.com` (password: `password123`)
-- **21 Medicines**: Curated mix of OTC and prescription items, with diverse stock counts including one out-of-stock item (`Ranitidine 150mg (OOS)`) to test cart validation edge cases.
-- **2 Coupons**:
-  - `FLAT50`: Flat ₹50 off (minimum order value ₹299).
-  - `PCT20`: 20% off (minimum order value ₹199).
+## Seed Data
+
+The application automatically seeds:
+
+* Sample users
+* Medicines
+* Coupons
+
+during startup.
 
 ---
 
-## 📡 API Usage Examples (cURL)
+## Bonus Features Implemented
 
-### 1. Register User
-```bash
-curl -X POST "http://localhost:8000/auth/register" \
-     -H "Content-Type: application/json" \
-     -d '{"email": "customer@example.com", "password": "password123", "full_name": "Jane Customer"}'
-```
+* JWT Authentication
+* Coupon Support
+* Google Gemini Prescription Scanner
+* Docker Compose Setup
+* Concurrent Stock Handling using PostgreSQL Row Locking
 
-### 2. User Login (returns JWT Token)
-```bash
-curl -X POST "http://localhost:8000/auth/login" \
-     -H "Content-Type: application/json" \
-     -d '{"email": "customer@example.com", "password": "password123"}'
-```
+---
 
-### 3. List Medicines Catalogue
-```bash
-curl -X GET "http://localhost:8000/medicines"
-```
+## Future Improvements
 
-### 4. Search Medicines (by Name or Salt)
-```bash
-curl -X GET "http://localhost:8000/medicines/search?q=Paracetamol"
-```
-
-### 5. Check Serviceability (Serviceable limit <= 5000m)
-```bash
-curl -X POST "http://localhost:8000/serviceability/check" \
-     -H "Content-Type: application/json" \
-     -d '{"pincode": "560001", "distance": 1500}'
-```
+* Pagination
+* Admin Dashboard
+* Payment Gateway Integration
+* Inventory Analytics
+* Notification System
+* Multi-Store Support

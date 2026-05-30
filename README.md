@@ -8,7 +8,7 @@ The application allows users to browse medicines, manage their cart, verify deli
 
 ## Live Demo
 
-**Demo Video:** [https://youtu.be/NuHZa3jy2os]
+**Demo Video:** [Watch Demo](https://youtu.be/NuHZa3jy2os)
 
 The demo covers:
 
@@ -51,7 +51,7 @@ The demo covers:
 
 ![Prescription Scanner](https://github.com/user-attachments/assets/4c121e85-53e5-4f73-b7c9-6a87da8b5c96)
 
----
+
 ---
 
 ## Features
@@ -232,11 +232,11 @@ http://localhost:8000/docs
 User Account
 
 ```text
-Email: demo@example.com
-Password: password123
+Email: sam11@gmail.com
+Password: 123456
 ```
 
-(Replace with your actual seeded credentials.)
+You may also create a new account using the registration page and log in with your own credentials.
 
 ---
 
@@ -249,7 +249,7 @@ JWT_SECRET=your_secret_key
 
 GEMINI_API_KEY=your_gemini_api_key
 ```
-
+> GEMINI_API_KEY is only required for the AI prescription scanning feature.
 ---
 
 ## Running Tests
@@ -284,11 +284,3 @@ during startup.
 
 ---
 
-## Future Improvements
-
-* Pagination
-* Admin Dashboard
-* Payment Gateway Integration
-* Inventory Analytics
-* Notification System
-* Multi-Store Support

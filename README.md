@@ -114,23 +114,13 @@ The demo covers:
 
 Order placement uses PostgreSQL row-level locking (`SELECT FOR UPDATE`) to prevent race conditions and ensure stock consistency during concurrent purchases.
 
-### Backend Architecture
-
-The backend follows a layered architecture:
-
-API Layer → Service Layer → Database Layer
-
-This separation improves maintainability, scalability, and testability.
-
 ### Server-Side Validation
 
-Critical validations such as stock availability, serviceability checks, coupon validation, and order processing are performed on the server.
+Critical validations such as stock availability, serviceability checks, coupon validation, and order processing are performed on the server to ensure data integrity and prevent client-side manipulation.
 
 ### Containerized Development
 
-Docker Compose provides a reproducible development environment with minimal setup.
-
----
+Docker Compose provides a reproducible development environment with minimal setup, allowing the entire application stack to be started with a single command.
 
 ## Tech Stack
 

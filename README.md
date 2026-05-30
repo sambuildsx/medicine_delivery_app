@@ -27,8 +27,6 @@ The demo covers:
 
 ## Screenshots
 
-## Screenshots
-
 ### Medicine Catalogue
 
 ![Medicine Catalogue](https://github.com/user-attachments/assets/daf9dffc-2210-4d40-8060-8347b725e3d9)
@@ -50,7 +48,6 @@ The demo covers:
 ### Prescription Scanner
 
 ![Prescription Scanner](https://github.com/user-attachments/assets/4c121e85-53e5-4f73-b7c9-6a87da8b5c96)
-
 
 ---
 

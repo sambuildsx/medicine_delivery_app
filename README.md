@@ -144,7 +144,6 @@ Docker Compose provides a reproducible development environment with minimal setu
 ### Backend
 
 * FastAPI
-* SQLAlchemy
 * PostgreSQL
 * Pydantic
 * JWT Authentication

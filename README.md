@@ -29,7 +29,7 @@ The demo covers:
 
 ### Medicine Catalogue
 
-![Medicine Catalogue](<img width="1916" height="901" alt="image" src="https://github.com/user-attachments/assets/daf9dffc-2210-4d40-8060-8347b725e3d9" />
+![Medicine Catalogue]("https://github.com/user-attachments/assets/daf9dffc-2210-4d40-8060-8347b725e3d9" 
 )
 
 ### Cart 

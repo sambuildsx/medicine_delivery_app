@@ -27,31 +27,31 @@ The demo covers:
 
 ## Screenshots
 
+## Screenshots
+
 ### Medicine Catalogue
 
-![Medicine Catalogue]("https://github.com/user-attachments/assets/daf9dffc-2210-4d40-8060-8347b725e3d9" 
-)
+![Medicine Catalogue](https://github.com/user-attachments/assets/daf9dffc-2210-4d40-8060-8347b725e3d9)
 
-### Cart 
-![Cart and Checkout](<img width="1915" height="902" alt="image" src="https://github.com/user-attachments/assets/1262ed31-ba34-4862-94e4-7521319a1036" />
-)
-(<img width="1912" height="892" alt="image" src="https://github.com/user-attachments/assets/18952a46-75fb-476e-906d-7a7528261e0b" />
-)
+### Cart
+
+![Cart](https://github.com/user-attachments/assets/1262ed31-ba34-4862-94e4-7521319a1036)
+
+![Cart Summary](https://github.com/user-attachments/assets/18952a46-75fb-476e-906d-7a7528261e0b)
 
 ### Checkout
-(<img width="1913" height="896" alt="image" src="https://github.com/user-attachments/assets/ddb2bef2-403e-4837-af6e-990726d4d90d" />
-)
+
+![Checkout](https://github.com/user-attachments/assets/ddb2bef2-403e-4837-af6e-990726d4d90d)
 
 ### Order History
 
-![Order History](<img width="1913" height="899" alt="image" src="https://github.com/user-attachments/assets/8bece731-d2db-4964-bfba-ba6b44ef3668" />
-)
+![Order History](https://github.com/user-attachments/assets/8bece731-d2db-4964-bfba-ba6b44ef3668)
 
 ### Prescription Scanner
 
-![Prescription Scanner](<img width="1905" height="897" alt="image" src="https://github.com/user-attachments/assets/4c121e85-53e5-4f73-b7c9-6a87da8b5c96" />
-)
+![Prescription Scanner](https://github.com/user-attachments/assets/4c121e85-53e5-4f73-b7c9-6a87da8b5c96)
 
+---
 ---
 
 ## Features
